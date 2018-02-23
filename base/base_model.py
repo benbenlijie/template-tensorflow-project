@@ -40,7 +40,8 @@ class BaseModel:
         tf.logging.info("Model saved")
 
     def load(self, sess):
-        latest_checkpoint = tf.train.latest_checkpoint(os.path.join(self.config.checkpoint_dir, self.config.exp_name))
+        print(os.path.join(self.config.checkpoint_dir))
+        latest_checkpoint = tf.train.latest_checkpoint(os.path.join(self.config.checkpoint_dir))
         if latest_checkpoint:
             tf.logging.info("Loading model checkpoint from {}".format(latest_checkpoint))
             self.saver.restore(sess, latest_checkpoint)

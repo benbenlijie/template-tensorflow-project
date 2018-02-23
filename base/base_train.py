@@ -12,6 +12,9 @@ class BaseTrain:
 
     def train(self):
         tf.logging.info("Start to Train")
+        if self.model.init_op is not None:
+            self.model.init_op(self.sess)
+        self.model.load(self.sess)
         coord = tf.train.Coordinator()
         threads = tf.train.start_queue_runners(coord=coord)
         try:
